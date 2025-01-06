@@ -12,8 +12,9 @@ async def read_items(name:str = "unknown"):
     return {"name": name}
 
 @app.get("/validate")
-async def validate_item( name : str = Query(..., min_length=3 , max_length= 50 , regex="^[a-zA-Z\s]+$")):
-    return {"name":name}
+async def validate_item( name : str = Query(..., min_length=3 , max_length= 50 , regex="^[a-zA-Z\s]+$") ,
+                         email : str  = Query(..., regex="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")):
+    return {"name":name , "Email" : email}
 
 
 """
